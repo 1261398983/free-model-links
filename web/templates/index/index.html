@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="{{ .ConfigSite.SiteLang }}" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .ConfigSite.SiteTitle }}</title>
+    <meta name="keywords" content="{{ .ConfigSite.SiteKeyword }}">
+    <meta name="description" content="{{ .ConfigSite.SiteDesc }}">
+    {{ if .ConfigSite.SeoAuthor }}<meta name="author" content="{{ .ConfigSite.SeoAuthor }}">{{ else }}<meta name="author" content="{{ .ConfigSite.SiteCopyright }}">{{ end }}
+    <meta name="robots" content="{{ if .ConfigSite.SeoRobots }}{{ .ConfigSite.SeoRobots }}{{ else }}index,follow{{ end }}">
+    {{ if .ConfigSite.SeoCanonicalURL }}<link rel="canonical" href="{{ .ConfigSite.SeoCanonicalURL }}">{{ end }}
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ .ConfigSite.SiteTitle }}">
+    <meta property="og:description" content="{{ .ConfigSite.SiteDesc }}">
+    <meta property="og:type" content="website">
+    {{ if .ConfigSite.SiteURL }}<meta property="og:url" content="{{ .ConfigSite.SiteURL }}">{{ end }}
+    {{ if .ConfigSite.SeoOgImage }}<meta property="og:image" content="{{ .ConfigSite.SeoOgImage }}">{{ end }}
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="{{ if .ConfigSite.SeoTwitterCard }}{{ .ConfigSite.SeoTwitterCard }}{{ else }}summary{{ end }}">
+    <meta name="twitter:title" content="{{ .ConfigSite.SiteTitle }}">
+    <meta name="twitter:description" content="{{ .ConfigSite.SiteDesc }}">
+    {{ if .ConfigSite.SeoOgImage }}<meta name="twitter:image" content="{{ .ConfigSite.SeoOgImage }}">{{ end }}
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "{{ .ConfigSite.SiteTitle }}",
+      "url": "{{ .ConfigSite.SiteURL }}",
+      "description": "{{ .ConfigSite.SiteDesc }}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ .ConfigSite.SiteCopyright }}",
+        "url": "https://hcnsec.cn"
+      }
+    }
+    </script>    {{ if .ConfigSite.SiteFavicon }}
+    <link rel="shortcut icon" href="data:image/png;base64,{{ .ConfigSite.SiteFavicon }}">
+    {{ else }}
+    <link rel="shortcut icon" href="/assets/static/index/images/favicon_global.png">
+    {{ end }}
+    <link rel="stylesheet" href="/assets/static/index/css/apple-design.css?v=2">
+</head>
+<body>
+
+<header class="nav-header">
+    <div class="logo">
+        {{ if .ConfigSite.SiteLogo }}
+        <a href="/"><img src="data:image/png;base64,{{ .ConfigSite.SiteLogo }}" alt="{{ .ConfigSite.SiteCopyright }}"></a>
+        {{ else }}
+        <a href="/"><img src="/assets/static/index/images/logo_global.png" alt="{{ .ConfigSite.SiteCopyright }}"></a>
+        {{ end }}
+    </div>
+    <nav class="nav-links" id="category-nav">
+        {{ if .ConfigSite.ShowCategoryNav }}{{ range .CategoryTree }}
+        <a href="#cat-{{ .Name }}" class="smooth">{{ .Name }}</a>
+        {{ end }}{{ end }}
+    </nav>
+    <div class="nav-actions">
+        <a href="https://api.iamhc.cn" target="_blank" rel="noopener" class="btn btn-primary btn-sm" style="background:var(--accent);color:#fff;">公益API</a>
+        {{ if .ConfigSite.AllowSubmission }}
+        <a href="/submit" class="btn btn-secondary btn-sm">{{ index .Lang "submit_site" }}</a>
+        {{ end }}
+        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+        {{ if .ConfigSite.ShowCategoryNav }}
+        <button class="btn btn-secondary btn-sm btn-menu" onclick="toggleDrawer()" aria-label="菜单">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        {{ end }}
+    </div>
+</header>
+
+{{ if .ConfigSite.ShowCategoryNav }}
+<div class="nav-backdrop" id="nav-backdrop" onclick="closeDrawer()"></div>
+<nav class="nav-drawer" id="nav-drawer">
+    <div class="drawer-head">
+        <span>导航</span>
+        <button class="drawer-close" onclick="closeDrawer()" aria-label="关闭">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+    </div>
+    {{ range .CategoryTree }}
+    <a href="#cat-{{ .Name }}" onclick="closeDrawer()" class="smooth">{{ .Name }}</a>
+    {{ end }}
+</nav>
+{{ end }}
+
+{{ if .ConfigSite.ShowHero }}
+<section class="hero-section">
+    <h1>{{ .ConfigSite.SiteTitle }}</h1>
+    <p>{{ .ConfigSite.SiteDesc }}</p>
+    {{ if .ConfigSite.ShowSearch }}
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="{{ index .Lang "search_placeholder" }}" autocomplete="off">
+        <span class="search-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </span>
+    </div>
+    {{ end }}
+    <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:24px;">
+        {{ range .CategoryTree }}
+        <a href="#cat-{{ .Name }}" class="filter-chip smooth">{{ .Name }}</a>
+        {{ end }}
+    </div>
+</section>
+{{ else }}
+{{ if .ConfigSite.ShowSearch }}
+<section class="hero-section">
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="{{ index .Lang "search_placeholder" }}" autocomplete="off">
+        <span class="search-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </span>
+    </div>
+</section>
+{{ end }}
+{{ end }}
+
+<!-- 广告位：首页顶部 -->
+<div id="ad-homepage-top" style="max-width:1200px;margin:0 auto;padding:0 24px;"></div>
+
+<div class="sort-bar">
+    <span class="sort-label" id="site-count"></span>
+    <select id="sort-select" onchange="sortSites(this.value)">
+        <option value="default">{{ index .Lang "sort_default" }}</option>
+        <option value="rating-desc">{{ index .Lang "sort_rating_desc" }}</option>
+        <option value="rating-asc">{{ index .Lang "sort_rating_asc" }}</option>
+        <option value="reviews-desc">{{ index .Lang "sort_reviews_desc" }}</option>
+        <option value="newest">{{ index .Lang "sort_newest" }}</option>
+    </select>
+</div>
+
+{{ if and .ConfigSite.ShowFeatured .FeaturedSites }}
+<h3 class="section-title" id="cat-featured">🔥 精选推荐</h3>
+<div class="card-grid" style="grid-template-columns:repeat({{ .ConfigSite.CardsPerRow }}, minmax(0,1fr));">
+    {{ range .FeaturedSites }}
+    <div class="site-card" data-rating="{{ .AvgRating }}" data-reviews="{{ .ReviewCount }}" onclick="location.href='/site/{{ .ID }}'">
+        {{ if .IsFeatured }}<span class="badge-featured">{{ $.Lang.featured }}</span>{{ end }}
+        <button class="btn-visit" onclick="event.stopPropagation(); window.open('{{ .URL }}', '_blank')" title="Visit">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </button>
+        <div class="card-header">
+            <div class="card-icon">
+                {{ if .Icon }}
+                <img src="data:image/png;base64,{{ .Icon }}" alt="{{ .Title }}" loading="lazy">
+                {{ else }}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-tertiary)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/></svg>
+                {{ end }}
+            </div>
+            <div class="card-info">
+                <div class="card-title">{{ .Title }}</div>
+                <div class="card-desc">{{ .Description }}</div>
+            </div>
+        </div>
+        <div class="card-meta">
+            <div class="card-rating">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                {{ if .AvgRating }}<span>{{ printf "%.1f" .AvgRating }}</span>{{ else }}<span>--</span>{{ end }}
+                <span class="count">({{ .RatingCount }})</span>
+            </div>
+        </div>
+    </div>
+    {{ end }}
+</div>
+{{ end }}
+
+{{ if and .ConfigSite.ShowRecommended .RecommendedSites }}
+<h3 class="section-title" id="cat-recommended">⭐ 站长推荐</h3>
+<div class="card-grid" style="grid-template-columns:repeat({{ .ConfigSite.CardsPerRow }}, minmax(0,1fr));">
+    {{ range .RecommendedSites }}
+    <div class="site-card" data-rating="{{ .AvgRating }}" data-reviews="{{ .ReviewCount }}" onclick="location.href='/site/{{ .ID }}'">
+        <span class="badge-featured" style="background:var(--success)">{{ $.Lang.recommended }}</span>
+        <button class="btn-visit" onclick="event.stopPropagation(); window.open('{{ .URL }}', '_blank')" title="Visit">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </button>
+        <div class="card-header">
+            <div class="card-icon">
+                {{ if .Icon }}
+                <img src="data:image/png;base64,{{ .Icon }}" alt="{{ .Title }}" loading="lazy">
+                {{ else }}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-tertiary)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/></svg>
+                {{ end }}
+            </div>
+            <div class="card-info">
+                <div class="card-title">{{ .Title }}</div>
+                <div class="card-desc">{{ .Description }}</div>
+            </div>
+        </div>
+        <div class="card-meta">
+            <div class="card-rating">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                {{ if .AvgRating }}<span>{{ printf "%.1f" .AvgRating }}</span>{{ else }}<span>--</span>{{ end }}
+                <span class="count">({{ .RatingCount }})</span>
+            </div>
+        </div>
+    </div>
+    {{ end }}
+</div>
+{{ end }}
+
+{{ range .CategorySites }}
+{{ if .SiteList }}
+<h3 class="section-title" id="cat-{{ .Category }}">{{ .Category }}</h3>
+<div class="card-grid" style="grid-template-columns:repeat({{ $.ConfigSite.CardsPerRow }}, minmax(0,1fr));">
+    {{ range .SiteList }}
+    <div class="site-card" data-rating="{{ .AvgRating }}" data-reviews="{{ .ReviewCount }}" onclick="location.href='/site/{{ .ID }}'">
+        {{ if .IsFeatured }}<span class="badge-featured">{{ $.Lang.featured }}</span>{{ end }}
+        <button class="btn-visit" onclick="event.stopPropagation(); window.open('{{ .URL }}', '_blank')" title="Visit">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </button>
+        <div class="card-header">
+            <div class="card-icon">
+                {{ if .Icon }}
+                <img src="data:image/png;base64,{{ .Icon }}" alt="{{ .Title }}" loading="lazy">
+                {{ else }}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-tertiary)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/></svg>
+                {{ end }}
+            </div>
+            <div class="card-info">
+                <div class="card-title">{{ .Title }}</div>
+                <div class="card-desc">{{ .Description }}</div>
+            </div>
+        </div>
+        <div class="card-meta">
+            <div class="card-rating">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                {{ if .AvgRating }}<span>{{ printf "%.1f" .AvgRating }}</span>{{ else }}<span>--</span>{{ end }}
+                <span class="count">({{ .RatingCount }})</span>
+            </div>
+        </div>
+    </div>
+    {{ end }}
+</div>
+{{ end }}
+{{ end }}
+
+<!-- 广告位：首页底部 -->
+<div id="ad-homepage-bottom" style="max-width:1200px;margin:0 auto;padding:24px;"></div>
+
+{{ if .ConfigSite.ShowFooter }}
+<footer class="site-footer">
+    {{ if .ConfigSite.FriendLinks }}
+    <div class="friend-links" style="text-align:center;margin-bottom:16px;padding:16px 0;border-top:1px solid var(--border-color);">
+        <span style="color:var(--text-secondary);font-weight:500;margin-right:8px;">友情链接：</span>
+        {{ range $i, $l := .ConfigSite.FriendLinks }}
+            {{ if $i }}<span style="margin:0 8px;color:var(--text-tertiary);">·</span>{{ end }}
+            <a href="{{ $l.URL }}" target="_blank" rel="noopener" title="{{ $l.Desc }}" style="color:var(--text-secondary);text-decoration:none;">{{ $l.Name }}</a>
+        {{ end }}
+    </div>
+    {{ end }}
+    <p style="text-align:center;margin:0;color:var(--text-tertiary);font-size:13px;">
+        &copy; 2024-2026 <a href="https://hcnsec.cn" target="_blank" rel="noopener" style="color:var(--text-secondary);text-decoration:none;">{{ .ConfigSite.SiteCopyright }}</a>
+        · <a href="https://api.hcnsec.cn" target="_blank" rel="noopener" style="color:var(--text-secondary);text-decoration:none;">幻城 AI 中转站</a>
+        · <a href="https://github.com/yangqi1309134997-coder/free-model-links" target="_blank" rel="noopener" style="color:var(--text-secondary);text-decoration:none;">项目开源</a>
+        {{ if .ConfigSite.SiteRecord }} · <a href="{{ .ConfigSite.SiteURL }}" target="_blank" rel="noopener" style="color:var(--text-tertiary);">{{ .ConfigSite.SiteRecord }}</a>{{ end }}
+    </p>
+</footer>
+{{ end }}
+
+<script>
+var LANG = '{{ .ConfigSite.SiteLang }}';
+var LANG_DATA = {
+    api_providers_count: '{{ index .Lang "api_providers_count" }}',
+    my_account: '{{ index .Lang "my_account" }}'
+};
+function toggleTheme(){var h=document.documentElement,c=h.getAttribute('data-theme'),n=c==='dark'?'light':'dark';h.setAttribute('data-theme',n);localStorage.setItem('theme',n)}
+(function(){var s=localStorage.getItem('theme');if(s)document.documentElement.setAttribute('data-theme',s);else if(window.matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark')})();
+function toggleDrawer(){var d=document.getElementById('nav-drawer'),b=document.getElementById('nav-backdrop');if(!d)return;var open=d.classList.contains('open');if(open){closeDrawer()}else{d.classList.add('open');if(b)b.classList.add('show');document.body.style.overflow='hidden'}}
+function closeDrawer(){var d=document.getElementById('nav-drawer'),b=document.getElementById('nav-backdrop');if(d)d.classList.remove('open');if(b)b.classList.remove('show');document.body.style.overflow=''}
+var si=document.getElementById('search-input');if(si){si.addEventListener('input',function(e){var q=e.target.value.toLowerCase();document.querySelectorAll('.site-card').forEach(function(c){var t=c.querySelector('.card-title').textContent.toLowerCase();var d=c.querySelector('.card-desc').textContent.toLowerCase();c.style.display=(t.includes(q)||d.includes(q))?'':'none'})})}document.querySelectorAll('a.smooth,a.filter-chip').forEach(function(a){a.addEventListener('click',function(e){var href=decodeURI(this.getAttribute('href'));var t=document.querySelector(href);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
+function sortSites(m){document.querySelectorAll('.card-grid').forEach(function(g){var c=Array.from(g.children);c.sort(function(a,b){var ra=parseFloat(a.dataset.rating)||0,rb=parseFloat(b.dataset.rating)||0,rva=parseInt(a.dataset.reviews)||0,rvb=parseInt(b.dataset.reviews)||0;switch(m){case'rating-desc':return rb-ra;case'rating-asc':return ra-rb;case'reviews-desc':return rvb-rva;default:return 0}});c.forEach(function(x){g.appendChild(x)})})}
+var total=document.querySelectorAll('.card-grid .site-card').length;document.getElementById('site-count').textContent=total+' '+LANG_DATA.api_providers_count;
+
+// 加载广告
+function loadAds(slot, containerId){
+    fetch('/api/ads?slot='+slot).then(r=>r.json()).then(d=>{
+        if(!d.list || !d.list.length) return;
+        var container = document.getElementById(containerId);
+        if(!container) return;
+        var html = '';
+        d.list.forEach(function(ad){
+            if(ad.content_type==='html'){
+                html += '<div class="ad-unit" style="margin-bottom:12px;">'+ad.content+'</div>';
+            } else if(ad.content_type==='image' && ad.image_url){
+                var link = ad.link_url ? '<a href="'+ad.link_url+'" target="_blank" rel="noopener"><img src="'+ad.image_url+'" style="max-width:100%;border-radius:var(--radius-md);" alt="'+escapeHtml(ad.name)+'"></a>' : '<img src="'+ad.image_url+'" style="max-width:100%;border-radius:var(--radius-md);" alt="'+escapeHtml(ad.name)+'">';
+                html += '<div class="ad-unit" style="margin-bottom:12px;">'+link+'</div>';
+            } else if(ad.content_type==='text'){
+                var link = ad.link_url ? '<a href="'+ad.link_url+'" target="_blank" rel="noopener" style="color:var(--accent);">'+escapeHtml(ad.content)+'</a>' : escapeHtml(ad.content);
+                html += '<div class="ad-unit" style="margin-bottom:12px;padding:12px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);font-size:13px;color:var(--text-secondary);">'+link+'</div>';
+            }
+        });
+        container.innerHTML = html;
+    }).catch(function(){});
+}
+function escapeHtml(t){if(!t)return'';return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+loadAds('homepage_top','ad-homepage-top');
+loadAds('homepage_bottom','ad-homepage-bottom');
+</script>
+</body>
+</html>
