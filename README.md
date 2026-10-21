@@ -29,7 +29,7 @@
 
 | 名称 | 网址 | 地址入口 | 说明 |
 | --- | --- | --- | --- |
-| DSH API | [dshapi.icu](https://dshapi.icu) | `https://api.dshapi.icu/v1` | 同一 base URL 兼容 OpenAI 与 Anthropic；国模分组 0.08x；邮箱注册，支付宝 / 微信充值 |
+| 97wl | [97wl.cc](https://97wl.cc) | `https://api.97wl.cc/v1` | 同一 base URL 兼容 OpenAI 与 Anthropic；国模分组 0.08x；邮箱注册，支付宝 / 微信充值 |
 
 ## 文档
 
