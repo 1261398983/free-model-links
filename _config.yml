@@ -1,5 +1,5 @@
-﻿title: RELAY X · free-model-links
-description: RELAY X reverse-engineering API gateway plus a curated directory of AI API relays.
+﻿title: RELAY X · 逆向工程 | 免费大模型 API 导航
+description: RELAY X 逆向工程 API 网关：国模（DeepSeek 等）+ Claude / GPT / Gemini 统一端点。免费大模型 API 中转站网址导航。
 theme: jekyll-theme-cayman
 plugins:
   - jekyll-seo-tag
