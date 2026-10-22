@@ -312,3 +312,11 @@ go run ./cmd/gen
 
 > 说明：个人部署的第三方 API 转发服务，非上游厂商官方产品。建议按实际用量充值，避免一次性大额预付；重要业务请自备备份线路。
 
+---
+
+### 同类站点
+
+[配置指南](https://1261398983.github.io/ai-api-guide/) · [Coding 福利导航](https://1261398983.github.io/ai-coding-welfare/) · [公益站导航](https://1261398983.github.io/ai-api-gongyi-nav/) · [免费供应商](https://1261398983.github.io/free-ai-providers/) · [中转站导航](https://1261398983.github.io/ai-relay-nav/)
+
+**[RELAY X 中转站](https://api.97wl.cc/)** — QQ 邮箱注册 · 按量计费 · 输入输出分开计价
+
