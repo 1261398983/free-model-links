@@ -3,9 +3,9 @@
 
 > ### 🔗 本站作者自用的中转站
 >
-> **[RELAY X](https://api.97wl.cc/)** — 一个 [OI] 兼容端点统管 Claude / GPT / Gemini / Grok。
+> **[RELAY X](https://api.97wl.cc/register)** — 一个 [OI] 兼容端点统管 Claude / GPT / Gemini / Grok。
 > 注册只需 QQ 邮箱，无需邀请码、无需外币卡；按量计费，输入输出分开计价，倍率在控制台公开。
-> [[CC] 改两行环境变量即可接入 →](https://api.97wl.cc/)
+> [[CC] 改两行环境变量即可接入 →](https://api.97wl.cc/register)
 
 
 基于 [webstack-go](https://github.com/ch3nnn/webstack-go) 深度定制开发的 **AI / 大模型 API 服务商导航平台**，专为聚合、展示和评价大模型 API 中转服务商而设计。由 **新疆幻城网安科技有限责任公司** 维护运营。
@@ -37,7 +37,7 @@
 
 | 名称 | 网址 | 地址入口 | 说明 |
 | --- | --- | --- | --- |
-| 97wl | [api.97wl.cc](https://api.97wl.cc/) | `https://api.97wl.cc/v1` | 同一 base URL 兼容 OpenAI 与 Anthropic；国模分组 0.08x；邮箱注册，支付宝 / 微信充值 |
+| 97wl | [api.97wl.cc](https://api.97wl.cc/register) | `https://api.97wl.cc/v1` | 同一 base URL 兼容 OpenAI 与 Anthropic；国模分组 0.08x；邮箱注册，支付宝 / 微信充值 |
 
 ## 文档
 
@@ -300,7 +300,7 @@ go run ./cmd/gen
 
 ### 关于本站作者使用的中转站
 
-本站整理的中转站里，我长期自用的是 **[RELAY X](https://api.97wl.cc/)**：
+本站整理的中转站里，我长期自用的是 **[RELAY X](https://api.97wl.cc/register)**：
 
 - **双协议兼容** — [OI] 与 Anthropic 同时支持，[CC] / Codex 零改造
 - **注册门槛低** — QQ 邮箱即可，无需邀请码、无需手机号、无需外币卡
@@ -318,5 +318,5 @@ go run ./cmd/gen
 
 [配置指南](https://1261398983.github.io/ai-api-guide/) · [Coding 福利导航](https://1261398983.github.io/ai-coding-welfare/) · [公益站导航](https://1261398983.github.io/ai-api-gongyi-nav/) · [免费供应商](https://1261398983.github.io/free-ai-providers/) · [中转站导航](https://1261398983.github.io/ai-relay-nav/)
 
-**[RELAY X 中转站](https://api.97wl.cc/)** — QQ 邮箱注册 · 按量计费 · 输入输出分开计价
+**[RELAY X 中转站](https://api.97wl.cc/register)** — QQ 邮箱注册 · 按量计费 · 输入输出分开计价
 
