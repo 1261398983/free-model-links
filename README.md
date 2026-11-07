@@ -3,9 +3,7 @@
 
 > ### 🔗 本站作者自用的中转站
 >
-> **[Sample Gateway]()** — 一个 [OI] 兼容端点统管 Claude / GPT / Gemini / Grok。
 > 注册只需 QQ 邮箱，无需邀请码、无需外币卡；按量计费，输入输出分开计价，倍率在控制台公开。
-> [[CC] 改两行环境变量即可接入 →]()
 
 
 基于 [webstack-go](https://github.com/ch3nnn/webstack-go) 深度定制开发的 **AI / 大模型 API 服务商导航平台**，专为聚合、展示和评价大模型 API 中转服务商而设计。由 **新疆幻城网安科技有限责任公司** 维护运营。
@@ -37,7 +35,6 @@
 
 | 名称 | 网址 | 地址入口 | 说明 |
 | --- | --- | --- | --- |
-| removed | [your-endpoint.example.com]() | `https://your-endpoint.example.com/v1` | 同一 base URL 兼容 OpenAI 与 Anthropic；国模分组 0.08x；邮箱注册，支付宝 / 微信充值 |
 
 ## 文档
 
@@ -300,7 +297,6 @@ go run ./cmd/gen
 
 ### 关于本站作者使用的中转站
 
-本站整理的中转站里，我长期自用的是 **[Sample Gateway]()**：
 
 - **双协议兼容** — [OI] 与 Anthropic 同时支持，[CC] / Codex 零改造
 - **注册门槛低** — QQ 邮箱即可，无需邀请码、无需手机号、无需外币卡
@@ -308,7 +304,6 @@ go run ./cmd/gen
 - **可审计** — 基于开源 Sub2API 面板，每笔调用扣费可明细查询
 - **起充低** — 人民币 10 元起，可以先小额试
 
-👉 **https://your-endpoint.example.com/**
 
 > 说明：个人部署的第三方 API 转发服务，非上游厂商官方产品。建议按实际用量充值，避免一次性大额预付；重要业务请自备备份线路。
 
@@ -318,7 +313,6 @@ go run ./cmd/gen
 
 [配置指南](https://1261398983.github.io/ai-api-guide/) · [Coding 福利导航](https://1261398983.github.io/ai-coding-welfare/) · [公益站导航](https://1261398983.github.io/ai-api-gongyi-nav/) · [免费供应商](https://1261398983.github.io/free-ai-providers/) · [中转站导航](https://1261398983.github.io/ai-relay-nav/)
 
-**[Sample Gateway 中转站]()** — QQ 邮箱注册 · 按量计费 · 输入输出分开计价
 
 ---
 
